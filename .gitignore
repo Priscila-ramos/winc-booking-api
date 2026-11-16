@@ -1,0 +1,14 @@
+node_modules
+.vscode
+
+/src/generated/prisma
+
+.env
+
+
+# local database
+/prisma/*.db
+/prisma/*.db-journal
+
+# Test environment with JWT token
+/postman/environments/Local.postman_environment.json
