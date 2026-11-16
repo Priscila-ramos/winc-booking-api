@@ -294,13 +294,33 @@ app.use("/bookings", createBookingRouter(prisma));
 app.use(Sentry.Handlers.errorHandler());
 
 
+
 app.use((err, req, res, next) => {
   console.error(err);
+
+  if (err.code === "P2025") {
+    return res.status(404).json({
+      message: "Resource not found"
+    });
+  }
+
+  if (["P2002", "P2003", "P2014"].includes(err.code)) {
+    return res.status(400).json({
+      message: "Invalid request data"
+    });
+  }
+
+  if (err.name === "PrismaClientValidationError") {
+    return res.status(400).json({
+      message: "Invalid request data"
+    });
+  }
 
   res.status(500).json({
     message: "An error occurred on the server, please double-check your request!"
   });
 });
+
 
 
 app.listen(3000, () => {
