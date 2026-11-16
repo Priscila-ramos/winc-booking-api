@@ -21,7 +21,7 @@ const createPropertyRouter = (prisma) => {
 
       if (!property) {
         return res.status(404).json({
-          message: "Propriedade não encontrada"
+          message: "Property not found"
         });
       }
 
@@ -51,7 +51,7 @@ const createPropertyRouter = (prisma) => {
     } catch (error) {
       if (error.code === "P2025") {
         return res.status(404).json({
-          message: "Propriedade não encontrada"
+          message: "Property not found"
         });
       }
 
@@ -64,12 +64,12 @@ const createPropertyRouter = (prisma) => {
       await service.remove(req.params.id);
 
       res.status(200).json({
-        message: "Propriedade excluída com sucesso"
+        message: "Property deleted succesfully"
       });
     } catch (error) {
       if (error.code === "P2025") {
         return res.status(404).json({
-          message: "Propriedade não encontrada"
+          message: "Property not found"
         });
       }
 

@@ -38,7 +38,7 @@ app.post("/login", async (req, res) => {
 
     if (!username || !password) {
       return res.status(400).json({
-        message: "Username e password são obrigatórios"
+        message: "Username and password are required"
       });
     }
 
@@ -48,7 +48,7 @@ app.post("/login", async (req, res) => {
 
     if (!user || user.password !== password) {
       return res.status(401).json({
-        message: "Credenciais inválidas"
+        message: "Invalid credentials"
       });
     }
 
@@ -61,7 +61,7 @@ app.post("/login", async (req, res) => {
     res.status(200).json({ token });
   } catch (error) {
     res.status(500).json({
-      message: "Erro ao realizar login"
+      message: "Error while logging in"
     });
   }
 });
@@ -76,7 +76,7 @@ const authenticate = (req, res, next) => {
 
   if (!authorization) {
     return res.status(401).json({
-      message: "Token de autenticação não fornecido"
+      message: "Authentication token not provided"
     });
   }
 
@@ -95,7 +95,7 @@ const token = authorization.startsWith("Bearer ")
     next();
   } catch (error) {
     res.status(401).json({
-      message: "Token inválido ou expirado"
+      message: "Invalid or expired token"
     });
   }
 };
@@ -124,7 +124,7 @@ const validateReview = (req, res, next) => {
       !Number.isInteger(rating)
     ) {
       return res.status(400).json({
-        message: "Dados obrigatórios da avaliação inválidos ou ausentes"
+        message: "Required evaluation data are invalid or missing"
       });
     }
   }
@@ -137,7 +137,7 @@ const validateReview = (req, res, next) => {
       Object.keys(req.body).length === 0
     ) {
       return res.status(400).json({
-        message: "Informe os dados para atualizar a avaliação"
+        message: "Provide the details to update the assessment"
       });
     }
   }
@@ -147,7 +147,7 @@ const validateReview = (req, res, next) => {
     (!Number.isInteger(rating) || rating < 1 || rating > 5)
   ) {
     return res.status(400).json({
-      message: "A nota deve ser um número inteiro de 1 a 5"
+      message: "The rating must be an integer from 1 to 5"
     });
   }
 
@@ -221,7 +221,7 @@ const validateData = (req, res, next) => {
     Object.keys(data).length === 0
   ) {
     return res.status(400).json({
-      message: "Dados obrigatórios não fornecidos"
+      message: "Required data not provided"
     });
   }
 
@@ -229,7 +229,7 @@ const validateData = (req, res, next) => {
     for (const field of Object.keys(rules)) {
       if (data[field] === undefined || data[field] === null) {
         return res.status(400).json({
-          message: `Campo obrigatório ausente: ${field}`
+          message: `Missing mandatory field: ${field}`
         });
       }
     }
@@ -268,7 +268,7 @@ const validateData = (req, res, next) => {
 
     if (!valid) {
       return res.status(400).json({
-        message: `Valor inválido para o campo: ${field}`
+        message: `Invalid value for the field: ${field}`
       });
     }
   }

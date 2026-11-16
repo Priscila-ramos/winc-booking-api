@@ -21,7 +21,7 @@ const createReviewRouter = (prisma) => {
 
       if (!review) {
         return res.status(404).json({
-          message: "Avaliação não encontrada"
+          message: "Review not found"
         });
       }
 
@@ -51,7 +51,7 @@ const createReviewRouter = (prisma) => {
     } catch (error) {
       if (error.code === "P2025") {
         return res.status(404).json({
-          message: "Avaliação não encontrada"
+          message: "Review not found"
         });
       }
 
@@ -64,13 +64,13 @@ const createReviewRouter = (prisma) => {
       await service.remove(req.params.id);
       
 res.status(200).json({
-  message: "Avaliação excluída com sucesso"
+  message: "Review deleted successfully"
 });
 
     } catch (error) {
       if (error.code === "P2025") {
         return res.status(404).json({
-          message: "Avaliação não encontrada"
+          message: "Review not found"
         });
       }
 

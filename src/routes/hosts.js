@@ -21,7 +21,7 @@ const createHostRouter = (prisma) => {
 
       if (!host) {
         return res.status(404).json({
-          message: "Anfitrião não encontrado"
+          message: "Host not found"
         });
       }
 
@@ -51,7 +51,7 @@ const createHostRouter = (prisma) => {
     } catch (error) {
       if (error.code === "P2025") {
         return res.status(404).json({
-          message: "Anfitrião não encontrado"
+          message: "Host not found"
         });
       }
 
@@ -64,13 +64,13 @@ const createHostRouter = (prisma) => {
       await service.remove(req.params.id);
       
 res.status(200).json({
-  message: "Anfitrião excluído com sucesso"
+  message: "Host deleted successfully"
 });
 
     } catch (error) {
       if (error.code === "P2025") {
         return res.status(404).json({
-          message: "Anfitrião não encontrado"
+          message: "Host not found"
         });
       }
 

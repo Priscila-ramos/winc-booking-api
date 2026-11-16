@@ -21,7 +21,7 @@ const createUserRouter = (prisma) => {
 
       if (!user) {
         return res.status(404).json({
-          message: "Usuário não encontrado"
+          message: "User not found"
         });
       }
 
@@ -51,7 +51,7 @@ const createUserRouter = (prisma) => {
     } catch (error) {
       if (error.code === "P2025") {
         return res.status(404).json({
-          message: "Usuário não encontrado"
+          message: "User not found"
         });
       }
 
@@ -64,13 +64,13 @@ const createUserRouter = (prisma) => {
       await service.remove(req.params.id);
       
 res.status(200).json({
-  message: "Usuário excluído com sucesso"
+  message: "User deleted successfully"
 });
 
     } catch (error) {
       if (error.code === "P2025") {
         return res.status(404).json({
-          message: "Usuário não encontrado"
+          message: "User not found"
         });
       }
 

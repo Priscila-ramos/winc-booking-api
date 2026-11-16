@@ -21,7 +21,7 @@ const createBookingRouter = (prisma) => {
 
       if (!booking) {
         return res.status(404).json({
-          message: "Reserva não encontrada"
+          message: "Booking not found"
         });
       }
 
@@ -51,7 +51,7 @@ const createBookingRouter = (prisma) => {
     } catch (error) {
       if (error.code === "P2025") {
         return res.status(404).json({
-          message: "Reserva não encontrada"
+          message: "Booking not found"
         });
       }
 
@@ -64,13 +64,13 @@ const createBookingRouter = (prisma) => {
       await service.remove(req.params.id);
       
 res.status(200).json({
-  message: "Reserva excluída com sucesso"
+  message: "Booking deleted successfully"
 });
 
     } catch (error) {
       if (error.code === "P2025") {
         return res.status(404).json({
-          message: "Reserva não encontrada"
+          message: "Booking not found"
         });
       }
 
